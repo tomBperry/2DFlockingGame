@@ -91,13 +91,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4527987180588338920}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -117,10 +117,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7243742858785216199}
-  attractStrength: 0.01
-  repelStrength: 0.1
-  repelDistance: 5
-  allignDistance: 15
-  allignStrength: 0.2
-  maxSpeed: 5
+  attractStrength: 3
+  repelStrength: 10
+  repelDistance: 25
+  allignDistance: 50
+  allignStrength: 15
+  maxSpeed: 3
   localVeloicty: {x: 0, y: 0}
+  variablesSet: 0

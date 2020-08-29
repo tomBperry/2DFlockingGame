@@ -6,7 +6,7 @@ public class Generator : MonoBehaviour
 {
     public GameObject prefab;
 
-    public static int N = 20;
+    public static int N = 25;
     public static float initialSpeed = 0.5f;
 
     public static GameObject[] Boids = new GameObject[N];

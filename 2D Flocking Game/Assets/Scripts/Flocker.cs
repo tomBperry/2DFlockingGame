@@ -16,7 +16,7 @@ public class Flocker : MonoBehaviour
 
     public float maxSpeed = 1f;
 
-    public  Vector2 localVeloicty;
+    public Vector2 localVeloicty;
 
     public bool variablesSet = false;
     
@@ -29,26 +29,23 @@ public class Flocker : MonoBehaviour
         // go GameObject
     //go.GetComponent<Scriptname>().listname; 
 
-    void start()
+    void Start()
     {
         // GameObject GeneratorObject = GameObject.Find("GeneratorObject");
         // int N = Generator.N;//GeneratorObject.GetComponent<Generator>().N;
         
-        if (!variablesSet)
+        if (variablesSet == false)
         {
             attractStrength = attractStrength/Generator.N;
-            Debug.Log(attractStrength);
+            repelStrength = repelStrength/Generator.N;
+            allignStrength = allignStrength/Generator.N;
 
             variablesSet = true;
         }
-
-        Debug.Log(variablesSet);
-
     }
 
     void FixedUpdate()
     {
-        Debug.Log(variablesSet);
         foreach (Flocker flocker in Flockers)
         {
             if (flocker != this)
@@ -104,7 +101,7 @@ public class Flocker : MonoBehaviour
         // Newtonian gravity for POC
         float forceMagnitude = 1f;//Mathf.Pow(distance, -2);
         Vector2 force = direction.normalized * forceMagnitude * attractStrength;
-
+        // Debug.Log(force);
         rbToFlock.AddForce(force);
 
     }
@@ -143,7 +140,9 @@ public class Flocker : MonoBehaviour
                 float distance = magSquare(direction);//.magnitude;
 
                 if (distance < allignDistance*allignDistance)
+                {
                     localVeloicty = localVeloicty + rbToFlock.velocity;
+                }
             }
         }
 
@@ -161,8 +160,11 @@ public class Flocker : MonoBehaviour
 
     void LimitSpeed(Rigidbody2D _rb)
     {
-        _rb.velocity = _rb.velocity.normalized;
-        _rb.velocity = _rb.velocity*maxSpeed;
+        if (magSquare(_rb.velocity) > maxSpeed)
+        {
+            _rb.velocity = _rb.velocity.normalized;
+            _rb.velocity = _rb.velocity*maxSpeed;
+        }
         // Debug.Log(_rb.velocity);
 
         // if(magSquare(_rb.velocity) > maxSpeed*maxSpeed)
